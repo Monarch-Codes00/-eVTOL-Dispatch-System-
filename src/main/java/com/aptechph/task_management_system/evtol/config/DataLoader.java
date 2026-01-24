@@ -30,16 +30,26 @@ public class DataLoader implements CommandLineRunner {
                 new Evtol(null, "EVTOL-001", EvtolModel.LIGHTWEIGHT, 300, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-002", EvtolModel.MIDDLEWEIGHT, 400, 85, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-003", EvtolModel.CRUISERWEIGHT, 500, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
-                new Evtol(null, "EVTOL-004", EvtolModel.HEAVYWEIGHT, 500, 20, EvtolState.IDLE, new java.util.ArrayList<>(), 0), // Battery low
+                new Evtol(null, "EVTOL-004", EvtolModel.HEAVYWEIGHT, 500, 20, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-005", EvtolModel.LIGHTWEIGHT, 300, 90, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-006", EvtolModel.MIDDLEWEIGHT, 400, 75, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-007", EvtolModel.CRUISERWEIGHT, 500, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-008", EvtolModel.HEAVYWEIGHT, 500, 60, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
                 new Evtol(null, "EVTOL-009", EvtolModel.LIGHTWEIGHT, 300, 45, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
-                new Evtol(null, "EVTOL-010", EvtolModel.MIDDLEWEIGHT, 400, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0)
+                new Evtol(null, "EVTOL-010", EvtolModel.MIDDLEWEIGHT, 400, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-011", EvtolModel.LIGHTWEIGHT, 300, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-012", EvtolModel.MIDDLEWEIGHT, 400, 95, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-013", EvtolModel.CRUISERWEIGHT, 500, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-014", EvtolModel.HEAVYWEIGHT, 500, 15, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-015", EvtolModel.LIGHTWEIGHT, 300, 80, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-016", EvtolModel.MIDDLEWEIGHT, 400, 70, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-017", EvtolModel.CRUISERWEIGHT, 500, 100, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-018", EvtolModel.HEAVYWEIGHT, 500, 55, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-019", EvtolModel.LIGHTWEIGHT, 300, 40, EvtolState.IDLE, new java.util.ArrayList<>(), 0),
+                new Evtol(null, "EVTOL-020", EvtolModel.MIDDLEWEIGHT, 400, 90, EvtolState.IDLE, new java.util.ArrayList<>(), 0)
             ));
             
-            log.info("Created 10 eVTOLs.");
+            log.info("Created 20 eVTOLs.");
         }
 
         if (medicationRepository.count() == 0) {

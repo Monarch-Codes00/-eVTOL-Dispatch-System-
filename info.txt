@@ -1,0 +1,38 @@
+SKYMED eVTOL DISPATCH SYSTEM - TECHNICAL INFO
+
+DATABASE CONFIGURATION:
+System uses PostgreSQL. Configuration in src/main/resources/application.yaml
+- DB_NAME: evtol_db
+- DB_USER: postgres
+- DB_PASS: christopher
+- DB_PORT: 5432
+- DDL_AUTO: update
+
+BACKEND ENDPOINTS (Base URL: http://localhost:8080):
+
+eVTOL Management:
+- POST /api/evtol/register : Registers a new drone (Lightweight, Middleweight, Cruiserweight, Heavyweight)
+- POST /api/evtol/load : Loads medications (takes serial number and list of medication codes)
+- GET /api/evtol/available : Returns drones ready for loading (Battery >= 25% and IDLE/LOADING)
+- GET /api/evtol/{serialNumber}/medications : Returns list of items on drone
+- GET /api/evtol/{serialNumber}/battery : Returns battery level and state
+- GET /api/evtol/all : Returns full fleet status
+
+Medication Management:
+- POST /api/medications : Creates a new medication item
+- GET /api/medications : List all medications
+- GET /api/medications/available : List medications not currently assigned to a drone
+- DELETE /api/medications/{id} : Delete medication entry
+
+Health & Audit:
+- GET /api/health/logs : Get recent battery status audit logs
+- GET /api/health/logs/{serialNumber} : Get history for a specific drone
+
+PERIODIC TASK:
+- BatteryCheckScheduler runs every 120 seconds.
+- It logs battery level and state for every drone in the fleet to the 'battery_audit_logs' table.
+
+FRONTEND:
+- React application with Framer Motion animations and Glassmorphism design.
+- Built-in Dispatch Controller for drag-and-drop-like assignment of medications.
+- Real-time Health Monitor tab for tracking battery trends.
