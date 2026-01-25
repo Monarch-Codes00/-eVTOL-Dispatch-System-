@@ -22,7 +22,7 @@ public class EvtolService {
 
     @Transactional
     public EvtolResponseDto registerEvtol(EvtolRequestDto requestDto) {
-        // Check if serial number already exists
+      
         if (evtolRepository.existsBySerialNumber(requestDto.getSerialNumber())) {
             throw new IllegalArgumentException("eVTOL with serial number " + requestDto.getSerialNumber() + " already exists");
         }
@@ -41,11 +41,11 @@ public class EvtolService {
 
     @Transactional
     public EvtolResponseDto loadMedications(LoadMedicationRequestDto requestDto) {
-        // Find the eVTOL
+        
         Evtol evtol = evtolRepository.findBySerialNumber(requestDto.getEvtolSerialNumber())
                 .orElseThrow(() -> new IllegalArgumentException("eVTOL not found with serial number: " + requestDto.getEvtolSerialNumber()));
 
-        // Check if eVTOL can be loaded
+      
         if (evtol.getBatteryCapacity() < 25) {
             throw new IllegalStateException("Cannot load eVTOL with battery level below 25%. Current level: " + evtol.getBatteryCapacity() + "%");
         }
@@ -54,10 +54,10 @@ public class EvtolService {
             throw new IllegalStateException("eVTOL is not available for loading. Current state: " + evtol.getState());
         }
 
-        // Set state to LOADING
+       
         evtol.setState(EvtolState.LOADING);
 
-        // Calculate total weight of medications to be loaded
+       
         int totalWeight = 0;
         for (String medicationCode : requestDto.getMedicationCodes()) {
             Medication medication = medicationRepository.findByCode(medicationCode)
@@ -70,19 +70,19 @@ public class EvtolService {
             totalWeight += medication.getWeight();
         }
 
-        // Check if total weight exceeds available capacity
+       
         if (evtol.getCurrentLoad() + totalWeight > evtol.getWeightLimit()) {
             throw new IllegalStateException("Cannot load medications. Total weight (" + (evtol.getCurrentLoad() + totalWeight) + 
                     "g) exceeds weight limit (" + evtol.getWeightLimit() + "g)");
         }
 
-        // Load the medications
+    
         for (String medicationCode : requestDto.getMedicationCodes()) {
             Medication medication = medicationRepository.findByCode(medicationCode).get();
             evtol.addMedication(medication);
         }
 
-        // Set state to LOADED
+ 
         evtol.setState(EvtolState.LOADED);
 
         Evtol savedEvtol = evtolRepository.save(evtol);
