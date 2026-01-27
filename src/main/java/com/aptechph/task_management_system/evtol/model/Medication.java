@@ -27,7 +27,7 @@ public class Medication {
     @NotNull(message = "Weight is required")
     @Min(value = 1, message = "Weight must be at least 1 gram")
     @Column(nullable = false)
-    private Integer weight; // in grams
+    private Integer weight;
 
     @NotBlank(message = "Code is required")
     @Pattern(regexp = "^[A-Z0-9_]+$", 
@@ -36,7 +36,7 @@ public class Medication {
     private String code;
 
     @Column(length = 1000)
-    private String image; // URL or base64 encoded image
+    private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "evtol_id")

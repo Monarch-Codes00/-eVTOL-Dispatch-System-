@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "8d9a2b5e-4c7b-4d5e-9f8a-2b5e4c7b4d5e",
+		"name": "eVTOL Dispatch System API",
+		"description": "API collection for testing the eVTOL Dispatch System backend.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "eVTOL Management",
+			"item": [
+				{
+					"name": "Register eVTOL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serialNumber\": \"EVTOL-TEST-001\",\n    \"model\": \"HEAVYWEIGHT\",\n    \"weightLimit\": 500,\n    \"batteryCapacity\": 100,\n    \"state\": \"IDLE\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/evtol/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Load Medications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evtolSerialNumber\": \"EVTOL-001\",\n    \"medicationCodes\": [\"PARA_001\", \"IBU_001\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/evtol/load",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All eVTOLs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/evtol/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available eVTOLs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/evtol/available",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Battery Level",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/evtol/EVTOL-001/battery",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"EVTOL-001",
+								"battery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loaded Medications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/evtol/EVTOL-001/medications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"EVTOL-001",
+								"medications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific eVTOL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/evtol/EVTOL-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"evtol",
+								"EVTOL-001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medication Management",
+			"item": [
+				{
+					"name": "Create Medication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Aspirin\",\n    \"weight\": 25,\n    \"code\": \"ASP_001\",\n    \"image\": \"https://example.com/aspirin.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/medications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"medications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Medications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"medications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Medications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medications/available",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"medications",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medication by Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medications/PARA_001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"medications",
+								"PARA_001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health & Audit Logs",
+			"item": [
+				{
+					"name": "Get Recent Audit Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health/logs?limit=50",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Logs for Specific Drone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health/logs/EVTOL-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health",
+								"logs",
+								"EVTOL-001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

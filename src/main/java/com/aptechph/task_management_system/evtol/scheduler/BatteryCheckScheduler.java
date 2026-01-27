@@ -18,8 +18,7 @@ public class BatteryCheckScheduler {
 
     private final EvtolRepository evtolRepository;
     private final BatteryAuditLogRepository auditLogRepository;
-
-    // Periodically check battery levels (every 2 minutes for demo purposes, can be adjusted)
+    
     @Scheduled(fixedRate = 120000)
     public void checkBatteryLevels() {
         log.info("Starting periodic battery level check for all eVTOLs");
