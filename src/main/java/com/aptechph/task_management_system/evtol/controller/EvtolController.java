@@ -52,4 +52,10 @@ public class EvtolController {
     public ResponseEntity<EvtolResponseDto> getEvtol(@PathVariable String serialNumber) {
         return ResponseEntity.ok(evtolService.getEvtolBySerialNumber(serialNumber));
     }
+
+    @PatchMapping("/{serialNumber}/state")
+    public ResponseEntity<EvtolResponseDto> updateState(@PathVariable String serialNumber, @RequestBody java.util.Map<String, String> payload) {
+        EvtolState state = EvtolState.valueOf(payload.get("state"));
+        return ResponseEntity.ok(evtolService.updateEvtolState(serialNumber, state));
+    }
 }
