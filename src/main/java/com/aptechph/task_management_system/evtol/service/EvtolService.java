@@ -11,4 +11,5 @@ public interface EvtolService {
     BatteryLevelResponseDto getBatteryLevel(String serialNumber);
     List<EvtolResponseDto> getAllEvtols();
     EvtolResponseDto getEvtolBySerialNumber(String serialNumber);
+    EvtolResponseDto updateEvtolState(String serialNumber, EvtolState state);
 }
