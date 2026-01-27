@@ -10,4 +10,5 @@ public interface MedicationService {
     MedicationResponseDto getMedicationByCode(String code);
     List<MedicationResponseDto> getAvailableMedications();
     void deleteMedication(Long id);
+    MedicationResponseDto updateMedication(Long id, MedicationRequestDto requestDto);
 }
