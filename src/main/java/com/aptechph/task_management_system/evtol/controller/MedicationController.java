@@ -44,4 +44,9 @@ public class MedicationController {
         medicationService.deleteMedication(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MedicationResponseDto> updateMedication(@PathVariable Long id, @Valid @RequestBody MedicationRequestDto requestDto) {
+        return ResponseEntity.ok(medicationService.updateMedication(id, requestDto));
+    }
 }
