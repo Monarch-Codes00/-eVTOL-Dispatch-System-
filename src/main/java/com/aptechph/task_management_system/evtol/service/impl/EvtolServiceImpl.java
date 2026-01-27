@@ -127,6 +127,16 @@ public class EvtolServiceImpl implements EvtolService {
         return mapToResponseDto(evtol);
     }
 
+    @Override
+    @Transactional
+    public EvtolResponseDto updateEvtolState(String serialNumber, EvtolState state) {
+        Evtol evtol = evtolRepository.findBySerialNumber(serialNumber)
+                .orElseThrow(() -> new IllegalArgumentException("eVTOL not found with serial number: " + serialNumber));
+        evtol.setState(state);
+        Evtol savedEvtol = evtolRepository.save(evtol);
+        return mapToResponseDto(savedEvtol);
+    }
+
     private EvtolResponseDto mapToResponseDto(Evtol evtol) {
         List<MedicationResponseDto> medications = evtol.getMedications().stream()
                 .map(this::mapMedicationToResponseDto)
