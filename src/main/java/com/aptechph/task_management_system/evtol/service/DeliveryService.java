@@ -52,6 +52,10 @@ public class DeliveryService {
         delivery.setDistanceKm(Math.random() * 20 + 5); 
         delivery.setEstimatedArrival(LocalDateTime.now().plusMinutes(20 + (long)(Math.random() * 30)));
 
+        // Update evtol state
+        evtol.setState(EvtolState.DELIVERING);
+        evtolRepository.save(evtol);
+
         Delivery savedDelivery = deliveryRepository.save(delivery);
         return mapToResponseDto(savedDelivery);
     }
@@ -66,9 +70,16 @@ public class DeliveryService {
         if (status == DeliveryStatus.IN_TRANSIT) {
             delivery.setDispatchedAt(LocalDateTime.now());
             delivery.getEvtol().setState(EvtolState.DELIVERING);
-        } else if (status == DeliveryStatus.ARRIVED || status == DeliveryStatus.COMPLETED) {
+        } else if (status == DeliveryStatus.ARRIVED) {
+            delivery.getEvtol().setState(EvtolState.DELIVERED);
+        } else if (status == DeliveryStatus.COMPLETED) {
             delivery.setCompletedAt(LocalDateTime.now());
-            delivery.getEvtol().setState(status == DeliveryStatus.COMPLETED ? EvtolState.DELIVERED : EvtolState.DELIVERING);
+            delivery.getEvtol().setState(EvtolState.IDLE);
+            // Optionally clear medications from drone upon completion
+            delivery.getEvtol().getMedications().clear();
+            delivery.getEvtol().setCurrentLoad(0);
+        } else if (status == DeliveryStatus.CANCELLED) {
+            delivery.getEvtol().setState(EvtolState.IDLE);
         }
 
         evtolRepository.save(delivery.getEvtol());
