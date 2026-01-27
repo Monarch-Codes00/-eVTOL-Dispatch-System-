@@ -70,6 +70,21 @@ public class MedicationServiceImpl implements MedicationService {
         medicationRepository.delete(medication);
     }
 
+    @Override
+    @Transactional
+    public MedicationResponseDto updateMedication(Long id, MedicationRequestDto requestDto) {
+        Medication medication = medicationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Medication not found with id: " + id));
+
+        if (requestDto.getName() != null) medication.setName(requestDto.getName());
+        if (requestDto.getWeight() != null) medication.setWeight(requestDto.getWeight());
+        if (requestDto.getCode() != null) medication.setCode(requestDto.getCode());
+        if (requestDto.getImage() != null) medication.setImage(requestDto.getImage());
+
+        Medication savedMedication = medicationRepository.save(medication);
+        return mapToResponseDto(savedMedication);
+    }
+
     private MedicationResponseDto mapToResponseDto(Medication medication) {
         return new MedicationResponseDto(
                 medication.getId(),
