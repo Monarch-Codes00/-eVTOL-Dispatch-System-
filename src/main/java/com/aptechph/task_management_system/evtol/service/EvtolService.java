@@ -1,6 +1,7 @@
 package com.aptechph.task_management_system.evtol.service;
 
 import com.aptechph.task_management_system.evtol.dto.*;
+import com.aptechph.task_management_system.evtol.model.EvtolState;
 import java.util.List;
 
 public interface EvtolService {

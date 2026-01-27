@@ -1,6 +1,7 @@
 package com.aptechph.task_management_system.evtol.controller;
 
 import com.aptechph.task_management_system.evtol.dto.*;
+import com.aptechph.task_management_system.evtol.model.EvtolState;
 import com.aptechph.task_management_system.evtol.service.EvtolService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
